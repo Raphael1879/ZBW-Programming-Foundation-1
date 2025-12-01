@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OOP.Interfaces
+namespace OOP
 {
-    public enum Actions
+    internal class EnemyGenerator
     {
-        CHECK_STATS = 1,
-        ATTACK = 2,
     }
 }
