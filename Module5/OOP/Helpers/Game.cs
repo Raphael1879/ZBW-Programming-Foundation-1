@@ -1,8 +1,7 @@
 ﻿using OOP.Characters;
-using OOP.Interfaces;
-using OOP.Inventory;
+using OOP.Inventory.Impl;
 using OOP.Navigation;
-using OOP.Skills;
+using OOP.Skills.Impl;
 
 namespace OOP.Helpers
 {
@@ -22,7 +21,6 @@ namespace OOP.Helpers
             var player = new Player
             {
                 Name = playerName,
-                Level = 1,
                 Health = 50,
                 MaxHealth = 50,
                 MaxMana = 3,
@@ -45,19 +43,9 @@ namespace OOP.Helpers
                 var direction = ConsoleHelper.ReadDirection();
 
                 Dungeon.Move(player, direction);
-                //Dungeon.DisplayAsciiMapVertical();
-
-                //var menuAction = ConsoleHelper.GetEnumAction<MenuActions>();
-
-                //if (menuAction == MenuActions.GO_DEEPER)
-                //{
-                //    var nextRoom = Dungeon.Advance();
-                //    nextRoom?.OnRoomEnter(player);
-                //}
-
             }
 
-            if (player.Health >= 0)
+            if (player.Health <= 0)
             {
                 Console.Clear();
                 ConsoleHelper.Speak("G A M E O V E R", ConsoleColor.DarkRed, 200, true);
@@ -70,12 +58,6 @@ namespace OOP.Helpers
             if (layer <= 1) return 1;
             double multiplier = 0.9 * Math.Pow(1.6, layer);
             return multiplier;
-        }
-
-        public static void GiveXpBasedOnEnemy(CharacterBase gainer, CharacterBase slainEnemy)
-        {
-            gainer.GiveXp(slainEnemy.Level * 2);
-            Console.ReadKey(true);
         }
     }
 }

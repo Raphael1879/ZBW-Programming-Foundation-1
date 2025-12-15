@@ -2,6 +2,7 @@
 {
     using OOP.Characters;
     using OOP.Interfaces;
+    using OOP.Navigation.Rooms;
     using System;
     using System.ComponentModel;
 

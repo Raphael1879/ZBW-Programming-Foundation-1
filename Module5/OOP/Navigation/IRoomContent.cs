@@ -1,6 +1,6 @@
 ﻿using OOP.Characters;
 
-namespace OOP.Interfaces
+namespace OOP.Navigation
 {
     public interface IRoomContent
     {

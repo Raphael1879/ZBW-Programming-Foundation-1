@@ -1,15 +1,16 @@
 ﻿using OOP.Helpers;
 using OOP.Interfaces;
+using OOP.Inventory;
+using OOP.Skills;
+using OOP.StatusEffects;
 
 namespace OOP.Characters
 {
     public abstract class CharacterBase
     {
         public required string Name { get; set; }
-        public int Level { get; set; }
         public int Health { get; set; }
         public int MaxHealth { get; set; }
-        public int Xp { get; set; }
         public int DamageModifier { get; set; }
         public int Mana { get; set; }
         public int MaxMana { get; set; }
@@ -25,19 +26,14 @@ namespace OOP.Characters
 
         public abstract ActionInfo GetAction();
 
-        public void GiveXp(int xp)
+        public void TakeDamage(int damage)
         {
-            Xp += xp;
-            ConsoleHelper.WriteColored($"{Name} gained {xp}xp", ConsoleColor.Blue);
-            Console.WriteLine();
+            Health -= damage;
+        }
 
-            while (Xp >= Level * Level) {
-               Xp = Xp - Level * Level;
-               Level++;
-
-               ConsoleHelper.WriteColored($"{Name} is now Level {Level}", ConsoleColor.Blue);
-               Console.WriteLine();
-            }
+        public int CalculateDamage(int damage)
+        {
+            return damage + DamageModifier;
         }
 
         public void AddStatusEffect(StatusEffect effect)
@@ -71,16 +67,6 @@ namespace OOP.Characters
         {
             Effects.ForEach(e => e.OnTurnEnd(this));
 
-        }
-
-        public void TakeDamage(int damage)
-        {
-            Health -= damage;
-        }
-
-        public int CalculateDamage(int damage)
-        {
-            return damage + DamageModifier;
         }
     }
 }

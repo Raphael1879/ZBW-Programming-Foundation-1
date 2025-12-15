@@ -1,5 +1,7 @@
 ﻿using OOP.Characters;
 using OOP.Interfaces;
+using OOP.Inventory;
+using OOP.Skills;
 using System.Text;
 
 namespace OOP.Helpers
@@ -159,7 +161,7 @@ namespace OOP.Helpers
 
             // Status effects
             var statusEffects = new StringBuilder();
-            player.Effects.ForEach(effect => statusEffects.Append(effect.Symbol + " " + effect.Stack));
+            player.Effects.ForEach(effect => statusEffects.Append(effect.Symbol + " " + effect.Stack + " "));
             ConsoleHelper.WriteCentered(statusEffects.ToString());
             Console.WriteLine();
 
@@ -177,14 +179,11 @@ namespace OOP.Helpers
 
             string enemyHpBar = ConsoleHelper.Bar(enemy.Health, enemy.MaxHealth, 22);
             string enemyLine =
-                $"{enemy.Name} | LVL {enemy.Level} | HP {enemy.Health}/{enemy.MaxHealth} {enemyHpBar}";
+                $"{enemy.Name} | HP {enemy.Health}/{enemy.MaxHealth} {enemyHpBar}";
 
             Console.SetCursorPosition(ConsoleHelper.CenterStartX(enemyLine), Console.CursorTop);
 
             ConsoleHelper.WriteColored(enemy.Name, ConsoleColor.Cyan);
-            ConsoleHelper.WriteColored(" | ", ConsoleColor.DarkGray);
-
-            ConsoleHelper.WriteColored($"LVL {enemy.Level}", ConsoleColor.DarkCyan);
             ConsoleHelper.WriteColored(" | ", ConsoleColor.DarkGray);
 
             ConsoleHelper.WriteColored($"HP {enemy.Health}/{enemy.MaxHealth} ", ConsoleColor.Gray);
@@ -195,7 +194,7 @@ namespace OOP.Helpers
             //ENEMY STATUS EFFECTS
 
             var enemyStatusEffects = new StringBuilder();
-            enemy.Effects.ForEach(effect => enemyStatusEffects.Append(effect.Symbol + " " + effect.Stack));
+            enemy.Effects.ForEach(effect => enemyStatusEffects.Append(effect.Symbol + " " + effect.Stack + " "));
             ConsoleHelper.WriteCentered(enemyStatusEffects.ToString());
             Console.WriteLine();
 

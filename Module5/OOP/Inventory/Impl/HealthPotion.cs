@@ -1,7 +1,6 @@
 ﻿using OOP.Characters;
-using OOP.Interfaces;
 
-namespace OOP.Inventory
+namespace OOP.Inventory.Impl
 {
     internal class HealthPotion : IItem
     {

@@ -13,7 +13,6 @@ namespace OOP.Characters
 
             while (true)
             {
-
                 Console.ForegroundColor = ConsoleColor.Gray;
                 Console.Write("Choose action (1-n, I1-In, or 'end'): ");
                 Console.ResetColor();

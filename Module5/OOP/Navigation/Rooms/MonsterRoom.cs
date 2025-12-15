@@ -1,7 +1,7 @@
 ﻿using OOP.Characters;
 using OOP.Helpers;
-using OOP.Interfaces;
 using OOP.Skills;
+using OOP.Skills.Impl;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OOP.Navigation
+namespace OOP.Navigation.Rooms
 {
     public class MonsterRoom : IRoomContent
     {
@@ -34,7 +34,6 @@ namespace OOP.Navigation
             {
                 Name = "Fungus",
                 SpritePath = "C:\\Repos\\ZBW-Programming-Foundation-1\\Module5\\OOP\\Sprites\\dude.txt",
-                Level = 1,
                 Health = 30,
                 MaxHealth = 30,
                 Mana = 1,
@@ -52,7 +51,6 @@ namespace OOP.Navigation
 
             if (fight.Winner == player)
             {
-                Game.GiveXpBasedOnEnemy(player, enemy1);
                 Cleared = true;
             }
 

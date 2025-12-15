@@ -1,13 +1,13 @@
 ﻿using OOP.Characters;
-using OOP.Interfaces;
 using OOP.StatusEffects;
+using OOP.StatusEffects.Impl;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OOP.Inventory
+namespace OOP.Inventory.Impl
 {
     internal class RagePotion : IItem
     {

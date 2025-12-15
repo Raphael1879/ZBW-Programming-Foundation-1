@@ -4,7 +4,7 @@ using OOP.Interfaces;
 using System;
 
 
-namespace OOP.Skills
+namespace OOP.Skills.Impl
 {
     internal class Strike : ISkill
     {
@@ -20,7 +20,7 @@ namespace OOP.Skills
         {
             var damage = user.CalculateDamage(Damage);
             target.TakeDamage(damage);
-            ConsoleHelper.Speak($"{user.Name} Strikes and delas {Damage} Damage!", ConsoleColor.Red);
+            ConsoleHelper.Speak($"{user.Name} Strikes and delas {damage} Damage!", ConsoleColor.Red);
         }
 
         public void Upgrade()

@@ -2,13 +2,14 @@
 using OOP.Helpers;
 using OOP.Interfaces;
 using OOP.StatusEffects;
+using OOP.StatusEffects.Impl;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OOP.Skills
+namespace OOP.Skills.Impl
 {
     public class Slice : ISkill
     {
@@ -18,8 +19,6 @@ namespace OOP.Skills
         public SkillType Type { get; set; } = SkillType.Attack;
         public int Damage { get; set; } = 4;
         public int Level { get; set; } = 1;
-
-
         public int BleedStacks = 1;
 
         public void Use(CharacterBase user, CharacterBase target)
@@ -27,7 +26,7 @@ namespace OOP.Skills
             var damage = user.CalculateDamage(Damage);
             target.TakeDamage(damage);
             target.AddStatusEffect(new Bleed { Stack = BleedStacks});
-            ConsoleHelper.Speak($"{user.Name} Slices {target.Name} and delas {Damage} Damage! {target.Name} Bleeds +{BleedStacks}", ConsoleColor.Red);
+            ConsoleHelper.Speak($"{user.Name} Slices {target.Name} and delas {damage} Damage! {target.Name} Bleeds +{BleedStacks}", ConsoleColor.Red);
 
         }
 

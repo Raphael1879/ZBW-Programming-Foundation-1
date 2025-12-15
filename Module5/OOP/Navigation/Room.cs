@@ -1,6 +1,4 @@
-﻿using OOP.Interfaces;
-
-namespace OOP.Navigation
+﻿namespace OOP.Navigation
 {
     public class Room
     {

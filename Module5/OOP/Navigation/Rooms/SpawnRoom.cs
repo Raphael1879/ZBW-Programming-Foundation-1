@@ -1,8 +1,6 @@
-﻿
-using OOP.Characters;
-using OOP.Interfaces;
+﻿using OOP.Characters;
 
-namespace OOP.Navigation
+namespace OOP.Navigation.Rooms
 {
     public class SpawnRoom : IRoomContent
     {

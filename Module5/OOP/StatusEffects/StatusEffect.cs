@@ -1,7 +1,7 @@
 ﻿using OOP.Characters;
+using OOP.Interfaces;
 
-
-namespace OOP.Interfaces
+namespace OOP.StatusEffects
 {
     public abstract class StatusEffect
     {

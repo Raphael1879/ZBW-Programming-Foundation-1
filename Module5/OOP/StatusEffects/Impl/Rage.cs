@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OOP.StatusEffects
+namespace OOP.StatusEffects.Impl
 {
     public class Rage : StatusEffect
     {
