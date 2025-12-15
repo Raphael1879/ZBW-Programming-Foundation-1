@@ -1,28 +1,12 @@
-﻿using OOP.Characters;
-using OOP.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using OOP.Interfaces;
 
-namespace OOP.Map
+namespace OOP.Navigation
 {
-    public partial class Room
+    public class Room
     {
-        public RoomType RoomType { get; set; }
+        public string Symbol { get; set; }
+        public ConsoleColor Color { get; set; } = ConsoleColor.White;
+        public IRoomContent? Content { get; set; }
 
-        public void OnRoomEnter(CharacterBase player)
-        {
-            Console.Clear();
-            Console.WriteLine("Entered new Room " + RoomType.ToString());
-            switch (RoomType)
-            {
-                case RoomType.Monster: {
-                        EnterMonsterRoom(player);
-                }
-                break;
-            }
-        }
     }
 }

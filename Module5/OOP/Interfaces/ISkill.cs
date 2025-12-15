@@ -12,6 +12,10 @@ namespace OOP.Interfaces
         public string Name { get; set; }
         public string Description { get; set; }
         public int Cost { get; set; }
+        public int Damage { get; set; }
+        public int Level { get; set; }
         public SkillType Type { get; set; }
+
+        public void Upgrade();
     }
 }

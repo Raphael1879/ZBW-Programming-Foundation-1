@@ -8,8 +8,8 @@ namespace OOP.Interfaces
 {
     public struct ActionInfo
     {
-        public FightActions FightAction { get; set; }
+        public FightActions Type { get; set; }
 
-        public object ActionRef { get; set; }
+        public IUseable ObjectRef { get; set; }
     }
 }

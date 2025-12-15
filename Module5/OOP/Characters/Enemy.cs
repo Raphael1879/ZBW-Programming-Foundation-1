@@ -1,4 +1,5 @@
 ﻿using OOP.Interfaces;
+using OOP.Skills;
 
 namespace OOP.Characters
 {
@@ -6,7 +7,21 @@ namespace OOP.Characters
     {
         public override ActionInfo GetAction()
         {
-            throw new NotImplementedException();
+            Thread.Sleep(1000);
+            if(Mana > 0)
+            {
+                return new ActionInfo
+                {
+                    Type = FightActions.Fight,
+                    ObjectRef = Skills.First()
+                };
+            } else
+            {
+                return new ActionInfo
+                {
+                    Type = FightActions.End_Turn
+                };
+            }
         }
     }
 }

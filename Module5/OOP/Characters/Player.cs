@@ -7,24 +7,78 @@ namespace OOP.Characters
 {
     internal class Player : CharacterBase
     {
-        public List<IItem> Items { get; set; } = [];
-
         public override ActionInfo GetAction()
         {
-
             DisplaySkillsAndItemsSideBySide();
 
-            Console.ReadLine();
-            var action = new Strike();
-
-
-
-            return new ActionInfo
+            while (true)
             {
-                FightAction = FightActions.Fight,
-                ActionRef = action,
-            };
+
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.Write("Choose action (1-n, I1-In, or 'end'): ");
+                Console.ResetColor();
+
+                var input = Console.ReadLine()?.Trim();
+
+                if (string.IsNullOrEmpty(input))
+                    continue;
+
+                // END TURN
+                if (string.Equals(input, "end", StringComparison.OrdinalIgnoreCase))
+                {
+                    return new ActionInfo
+                    {
+                        Type = FightActions.End_Turn
+                    };
+                }
+
+                // ITEM: I1, I2, ...
+                if (input.StartsWith("I", StringComparison.OrdinalIgnoreCase))
+                {
+                    var indexPart = input.Substring(1);
+
+                    if (int.TryParse(indexPart, out int itemIndex))
+                    {
+                        itemIndex--; // convert to 0-based
+
+                        if (itemIndex >= 0 && itemIndex < Items.Count)
+                        {
+                            return new ActionInfo
+                            {
+                                Type = FightActions.Item,
+                                ObjectRef = Items[itemIndex]
+                            };
+                        }
+                    }
+                    continue;
+                }
+
+                // SKILL: 1, 2, 3...
+                if (int.TryParse(input, out int skillIndex))
+                {
+                    skillIndex--; // convert to 0-based
+
+                    if (skillIndex >= 0 && skillIndex < Skills.Count)
+                    {
+                        var skill = Skills[skillIndex];
+
+                        if(skill.Cost <= Mana)
+                        {
+                            return new ActionInfo
+                            {
+                                Type = FightActions.Fight,
+                                ObjectRef = skill
+                            };
+                        }
+
+                    }
+
+                    continue;
+                }
+
+            }
         }
+
 
 
         public void DisplaySkillsAndItemsSideBySide()

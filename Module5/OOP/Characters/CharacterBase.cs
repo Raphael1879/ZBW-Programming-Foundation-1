@@ -1,40 +1,86 @@
-﻿using OOP.Interfaces;
+﻿using OOP.Helpers;
+using OOP.Interfaces;
 
 namespace OOP.Characters
 {
     public abstract class CharacterBase
     {
-        public string Name { get; set; }
+        public required string Name { get; set; }
         public int Level { get; set; }
         public int Health { get; set; }
         public int MaxHealth { get; set; }
         public int Xp { get; set; }
-        public int Luck { get; set; }
-        public int TempoaryLuck{ get; set; }
-        public int Strength { get; set; }
-        public int TempoaryStrengt { get; set; }
+        public int DamageModifier { get; set; }
         public int Mana { get; set; }
         public int MaxMana { get; set; }
+        public string? SpritePath { get; set; }
+
 
         public required List<ISkill> Skills { get; set; }
+
+        public List<IItem> Items { get; set; } = [];
+
+        public List<StatusEffect> Effects { get; set; } = [];
 
 
         public abstract ActionInfo GetAction();
 
-
-
-
         public void GiveXp(int xp)
         {
             Xp += xp;
-            Console.WriteLine($"{Name} gained {xp}xp");
+            ConsoleHelper.WriteColored($"{Name} gained {xp}xp", ConsoleColor.Blue);
+            Console.WriteLine();
 
             while (Xp >= Level * Level) {
                Xp = Xp - Level * Level;
-               Console.WriteLine($"{Name} is now Level {Level}");
-                
-                Level++;
+               Level++;
+
+               ConsoleHelper.WriteColored($"{Name} is now Level {Level}", ConsoleColor.Blue);
+               Console.WriteLine();
             }
+        }
+
+        public void AddStatusEffect(StatusEffect effect)
+        {
+            effect.OnApply(this);
+            var existing = Effects.Find(i => i.Equals(effect));
+
+            if (existing is not null)
+            {
+                existing.Stack += effect.Stack;
+            } else
+            {
+                Effects.Add(effect);
+            }
+        }
+
+        public void OnCombatStart()
+        {
+            Effects.Clear();
+            DamageModifier = 0;
+        }
+
+        public void OnTrunStart()
+        {
+            Mana = MaxMana;
+            Effects.ForEach(e => e.OnTurnStart(this));
+            Effects = Effects.Where(e => e.Stack > 0).ToList();
+        }
+
+        public void OnTurnEnd()
+        {
+            Effects.ForEach(e => e.OnTurnEnd(this));
+
+        }
+
+        public void TakeDamage(int damage)
+        {
+            Health -= damage;
+        }
+
+        public int CalculateDamage(int damage)
+        {
+            return damage + DamageModifier;
         }
     }
 }

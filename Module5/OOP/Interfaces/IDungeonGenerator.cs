@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OOP
+namespace OOP.Interfaces
 {
-    internal class EnemyGenerator
+    public interface IDungeonGenerator
     {
     }
 }

@@ -35,5 +35,17 @@ namespace OOP.Interfaces
         End_Turn
     }
 
+    public enum Direction
+    {
+        Up,
+        Down,
+        Left,
+        Right
+    }
 
+    public enum StatusEffectType
+    {
+        Buff,
+        Debuff
+    }
 }

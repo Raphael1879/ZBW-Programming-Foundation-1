@@ -1,5 +1,6 @@
 ﻿using OOP.Characters;
 using OOP.Interfaces;
+using OOP.StatusEffects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace OOP.Inventory
 
         public void Use(CharacterBase user, CharacterBase target)
         {
-            user.TempoaryStrengt += 3;
+            user.AddStatusEffect(new Rage { Stack = 3 });
         }
     }
 }
